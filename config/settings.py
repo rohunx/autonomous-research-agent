@@ -1,0 +1,2 @@
+MODEL_NAME = "gpt-4o-mini"
+MAX_ITERATIONS = 10
