@@ -19,16 +19,18 @@ class ResearchAgent:
 
     def run(self):
         for step in range(MAX_ITERATIONS):
+            retrieved_context = self.memory.search(self.objective)
+
             action = self.planner.plan(
                 self.objective,
-                self.memory.get()
+                retrieved_context
             )
 
             result = self.executor.execute(action)
 
-            self.memory.add(f"Action: {action}")
-            self.memory.add(f"Result: {result}")
+            self.memory.add(result)
 
-            print(f"\n[Step {step+1}]")
+            print(f"\n[Step {step + 1}]")
             print("Action:", action)
-            print("Result:", result)
+            print("Result:", str(result)[:500])
+
